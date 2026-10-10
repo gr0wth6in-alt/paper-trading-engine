@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Hostile Feed</title>
+    <link>https://hostile.example.test/</link>
+    <item>
+      <title><![CDATA[Bitcoin <b>surges</b> &amp; $ETH follows]]></title>
+      <link>https://hostile.example.test/a?utm_source=rss&amp;utm_medium=feed&amp;id=7</link>
+      <pubDate>Fri, 09 Oct 2026 20:39:17 +0000</pubDate>
+      <description><![CDATA[<p style="x"><img src="x" onerror="alert(1)">Price <script>alert('xss')</script>jumps<style>p{}</style> &lt;iframe src=evil&gt;&lt;/iframe&gt; again.</p>]]></description>
+    </item>
+    <item>
+      <title>Duplicate with different tracking</title>
+      <link>https://hostile.example.test/a?id=7&amp;utm_campaign=x</link>
+      <pubDate>Fri, 09 Oct 2026 20:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Script link</title>
+      <link>javascript:alert(1)</link>
+    </item>
+    <item>
+      <title>Data link</title>
+      <link>data:text/html;base64,PHNjcmlwdD4=</link>
+    </item>
+    <item>
+      <title>No date, future is clamped too</title>
+      <link>https://hostile.example.test/nodate</link>
+    </item>
+    <item>
+      <title>From the future</title>
+      <link>https://hostile.example.test/future</link>
+      <pubDate>Fri, 01 Jan 2100 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Chainlink and NEAR link the ether near Bitcoin Cash</title>
+      <link>https://hostile.example.test/words</link>
+      <pubDate>Thu, 08 Oct 2026 10:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title></title>
+      <link>https://hostile.example.test/untitled</link>
+    </item>
+  </channel>
+</rss>

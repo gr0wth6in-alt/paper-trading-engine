@@ -1,0 +1,43 @@
+# Paste the `mcp_servers.paper` block into the Hermes config of the Linux user that runs
+# Hermes (usually ~/.hermes/config.yaml). Verified against the Hermes MCP docs: stdio entries
+# use `command`, `args`, `env`, and `tools.include` whitelists the registered tools.
+#
+# Option A (recommended): a wrapper reads the agent token from a 0640 file, so the secret is
+# not stored in config.yaml. See DEPLOYMENT.md section 11.
+mcp_servers:
+  paper:
+    command: "/opt/paper-trading-engine/deploy/hermes-mcp.sh"
+    args: []
+    tools:
+      include:
+        - get_overview
+        - get_market
+        - get_candles
+        - get_news
+        - get_history
+        - get_guardrails
+        - open_position
+        - close_position
+
+# Option B: call the venv Python directly and put the token in `env`. Make config.yaml 0600.
+#
+# mcp_servers:
+#   paper:
+#     command: "/opt/paper-trading-engine/.venv/bin/python"
+#     args: ["-m", "paper_engine.mcp_server"]
+#     env:
+#       PAPER_ENGINE_URL: "http://127.0.0.1:8000"
+#       PAPER_AGENT_TOKEN: "paste-the-PAPER_AGENT_TOKEN-value"
+#
+# Option C (Hermes inside Docker, cannot reach the host venv): run the server in
+# streamable-http mode on the docker bridge IP and connect by URL with a separate token.
+#
+# mcp_servers:
+#   paper:
+#     url: "http://172.17.0.1:8765/mcp"
+#     headers:
+#       Authorization: "Bearer paste-the-PAPER_MCP_TOKEN-value"
+
+# Recommended: stop the agent rewriting its own trading skill without your approval.
+skills:
+  write_approval: true

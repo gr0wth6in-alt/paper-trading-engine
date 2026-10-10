@@ -1,0 +1,15 @@
+# /etc/systemd/system/paper-backup.service (run by paper-backup.timer)
+[Unit]
+Description=Back up the paper trading database
+
+[Service]
+Type=oneshot
+User=paper
+Group=paper
+WorkingDirectory=/opt/paper-trading-engine
+ExecStart=/usr/bin/env bash /opt/paper-trading-engine/deploy/backup-db.sh
+NoNewPrivileges=yes
+ProtectSystem=strict
+ReadWritePaths=/opt/paper-trading-engine/data
+ProtectHome=yes
+PrivateTmp=yes

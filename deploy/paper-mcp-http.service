@@ -1,0 +1,29 @@
+# /etc/systemd/system/paper-mcp-http.service  (OPTIONAL: only if Hermes runs in Docker)
+# Serves the MCP tools over Streamable HTTP on the docker bridge IP with a bearer token.
+# Edit --host to your bridge IP (ip -4 addr show docker0). Never use 0.0.0.0.
+# /etc/paper-engine/mcp-http.env must define PAPER_AGENT_TOKEN and PAPER_MCP_TOKEN (mode 0600).
+[Unit]
+Description=Paper trading MCP server (HTTP, for containerised Hermes)
+After=paper-engine.service
+Requires=paper-engine.service
+
+[Service]
+Type=simple
+User=paper
+Group=paper
+WorkingDirectory=/opt/paper-trading-engine
+EnvironmentFile=/etc/paper-engine/mcp-http.env
+Environment=PAPER_ENGINE_URL=http://127.0.0.1:8000
+Environment=MALLOC_ARENA_MAX=2
+ExecStart=/opt/paper-trading-engine/.venv/bin/python -m paper_engine.mcp_server --transport streamable-http --host 172.17.0.1 --port 8765
+Restart=on-failure
+RestartSec=5
+MemoryMax=200M
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+
+[Install]
+WantedBy=multi-user.target

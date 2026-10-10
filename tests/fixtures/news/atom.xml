@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Atom Example</title>
+  <link href="https://atom.example.test/"/>
+  <updated>2026-10-09T12:00:00Z</updated>
+  <id>urn:uuid:atom-example</id>
+  <entry>
+    <title type="html">Ethereum &lt;em&gt;upgrade&lt;/em&gt; ships</title>
+    <link href="/posts/upgrade"/>
+    <id>urn:uuid:1</id>
+    <updated>2026-10-09T11:00:00Z</updated>
+    <summary type="html">&lt;p&gt;Developers say ETH fees fall.&lt;/p&gt;</summary>
+  </entry>
+</feed>

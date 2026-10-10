@@ -1,0 +1,11 @@
+# /etc/systemd/system/paper-backup.timer
+[Unit]
+Description=Daily paper database backup
+
+[Timer]
+OnCalendar=*-*-* 00:15:00 UTC
+Persistent=true
+RandomizedDelaySec=300
+
+[Install]
+WantedBy=timers.target

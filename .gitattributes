@@ -1,0 +1,6 @@
+# Linux deploy files must keep LF line endings even when committed from Windows.
+*.sh text eol=lf
+*.service text eol=lf
+*.timer text eol=lf
+deploy/*.conf text eol=lf
+docs/hermes/** text eol=lf
